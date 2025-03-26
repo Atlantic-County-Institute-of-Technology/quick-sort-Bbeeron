@@ -1,29 +1,27 @@
 import java.util.*;
 
-public class Main {
+public class  Main {
 
     public static int partition(int[] arr, int low, int high){
-        int midpoint = (high + low) / 2;
-        int midNum = arr[midpoint];
-        System.out.println(midNum);
+        int mid = (high + low) / 2;
+        int pivot = arr[mid];
         System.out.println(Arrays.toString(arr));
-        swap(arr, midpoint, high);
+        swap(arr, mid, high);
         System.out.println(Arrays.toString(arr));
-        int i = -1;
-        for (int j = 0; j < arr.length; j++){
+        int compare = -1;
+        for (int step = 0; step < high; step++){
 
-            if (arr[j] < midNum){
-                i++;
-                swap(arr, i, j);
+            if (arr[step] < pivot){
+                compare++;
+                swap(arr, step, compare);
             }
         }
+        System.out.println(Arrays.toString(arr));
+        swap(arr, compare+1, high);
+        System.out.println(Arrays.toString(arr));
+        System.out.println(arr[compare+1]);
 
-        System.out.println(Arrays.toString(arr));
-        swap(arr, midpoint, high);
-        // While loop and add 4 behind 5
-        // Return position of 4
-        System.out.println(Arrays.toString(arr));
-        return -1;
+       return compare+1;
     }
 
     public static void swap(int[] arr, int i, int j){
@@ -33,13 +31,27 @@ public class Main {
     }
 
     public static void quickSort(int[] arr, int low, int high){
-        ;
+        int pIndex = partition(arr, low, high);
+        if (pIndex == 0){
+            System.out.println(Arrays.toString(arr));
+        }
+        else{
+            quickSort(arr, low, pIndex-1);
+            quickSort(arr, pIndex+1, high);
+        }
     }
 
     public static void main(String[] args){
         int[] arr = {2, 5, 10, 3, 4, 8, 6, 9, 1, 7};
 
-        System.out.println(partition(arr, 0, arr.length-1));
+        //{1, 5, 8, 9, 7, 10, 6, 3, 2, 4}
+        if (arr.length == 0){
+            System.out.println("Empty Array");
+        }
+        else{
+            quickSort(arr, 0, arr.length-1);
+        }
+
 
     }
 
