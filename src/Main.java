@@ -9,29 +9,50 @@ public class Main {
         System.out.println("Array before midpoint swap: " + Arrays.toString(arr));
         swap(arr, mid, high);
         System.out.println("Array after midpoint swap: " + Arrays.toString(arr));
-        int high_i = high-1;
+        int high_i = high - 1;
+        for (int low_i = low; low_i < high; low_i++){
+            if (arr[low_i] > pivot) {
+                if (arr[high_i] < pivot) {
+                    swap(arr, low_i, high_i);
+                    System.out.println("Array after low/high swap: " + Arrays.toString(arr));
+                    high_i--;
+                }
 
-        for(int low_i = low; low_i < high_i; low_i++) {
-//https://www.tutorialspoint.com/data_structures_algorithms/quick_sort_algorithm.htm
-            if (arr[low_i] > pivot && arr[high_i] < pivot) {
-
-                System.out.println(arr[low_i] + " is greater than " + pivot);
-                System.out.println(arr[high_i] + " is less than " + arr[low_i]);
-                swap(arr, low_i, high_i);
-                System.out.println("Array after low/high swap: " + Arrays.toString(arr));
-                high_i--;
             }
 
-            System.out.println("low_i " + low_i + " high_i" + high_i);
-        }
-        int i;
-        for (i = low; i < high; i++) {
-            if (arr[i] > pivot){
-                swap(arr, i, high);
-            }
         }
         System.out.println("Array final: " + Arrays.toString(arr));
-        return i;
+        return -1;
+
+        //        int mid = (high + low) / 2;
+//        int pivot = arr[mid];
+//        System.out.println("Pivot is: " + pivot);
+//        System.out.println("Array before midpoint swap: " + Arrays.toString(arr));
+//        swap(arr, mid, high);
+//        System.out.println("Array after midpoint swap: " + Arrays.toString(arr));
+//        int high_i = high-1;
+//
+//        for(int low_i = low; low_i < high_i; low_i++) {
+//
+//            if (arr[low_i] > pivot && arr[high_i] < pivot) {
+//
+//                System.out.println(arr[low_i] + " is greater than " + pivot);
+//                System.out.println(arr[high_i] + " is less than " + arr[low_i]);
+//                swap(arr, low_i, high_i);
+//                System.out.println("Array after low/high swap: " + Arrays.toString(arr));
+//                high_i--;
+//            }
+//
+//            System.out.println("low_i " + low_i + " high_i" + high_i);
+//        }
+//        int i;
+//        for (i = low; i < high; i++) {
+//            if (arr[i] > pivot){
+//                swap(arr, i, high);
+//            }
+//        }
+//        System.out.println("Array final: " + Arrays.toString(arr));
+//        return i;
 
     }
 
@@ -54,7 +75,7 @@ public class Main {
     }
 
     public static void main(String[] args){
-        int[] arr = {2, 5, 10, 3, 4, 8, 6, 9, 1, 7};
+        int[] arr = {35, 33, 42, 10, 31, 19, 27, 44, 26, 14};
 
         //{1, 5, 8, 9, 7, 10, 6, 3, 2, 4}
         if (arr.length == 0){
